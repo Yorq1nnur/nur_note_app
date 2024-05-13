@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nur_note_app/screens/home/home_screen.dart';
+import 'package:nur_note_app/screens/app_routes.dart';
 import 'package:nur_note_app/utils/images/app_images.dart';
 import 'package:nur_note_app/utils/utility_functions/utility_functions.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({
+    super.key,
+  });
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -23,11 +25,9 @@ class _SplashScreenState extends State<SplashScreen>
         const Duration(
           seconds: 3,
         ), () {
-      Navigator.pushReplacement(
+      Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ),
+        RouteNames.homeScreen,
       );
     });
 
@@ -59,17 +59,24 @@ class _SplashScreenState extends State<SplashScreen>
             return Transform.scale(
               scale: _animation.value,
               child: Container(
-                width: getWidth(context)/1.5,
-                height: getWidth(context)/1.5,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue,
-                ),
+                width: getWidth(context) / 1.5,
+                height: getWidth(context) / 1.5,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blue,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(
+                          0.5,
+                        ),
+                        spreadRadius: 10,
+                      )
+                    ]),
                 child: Center(
                   child: Image.asset(
                     AppImages.firstOnboard,
-                    height: getWidth(context)/1.5,
-                    width: getWidth(context)/1.5,
+                    height: getWidth(context) / 1.5,
+                    width: getWidth(context) / 1.5,
                   ),
                 ),
               ),

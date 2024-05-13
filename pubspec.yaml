@@ -32,6 +32,7 @@ dependencies:
   toast: ^0.3.0
   flutter_screenutil: ^5.9.0
   cached_network_image: ^3.3.1
+  zoom_tap_animation: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -42,7 +42,7 @@ showToast({
       width: 2.w,
     ),
     backgroundColor: color ?? Colors.blue,
-    textStyle: AppTextStyle.interBold.copyWith(
+    textStyle: AppTextStyle.nunitoBold.copyWith(
       color: AppColors.black,
       fontSize: 16.w,
     ),
@@ -71,7 +71,7 @@ showSnackBar({
       content: Text(
         message,
         textAlign: TextAlign.center,
-        style: AppTextStyle.interSemiBold.copyWith(
+        style: AppTextStyle.nunitoSemiBold.copyWith(
           fontSize: 20.w,
           color: Colors.black,
         ),
