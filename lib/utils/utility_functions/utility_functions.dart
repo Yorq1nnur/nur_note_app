@@ -15,6 +15,13 @@ void methodPrint(dynamic data) {
   debugPrint("\$\$\$\$\$\$\n$data\n\$\$\$\$\$\$");
 }
 
+double getWidth(BuildContext context){
+  return MediaQuery.sizeOf(context).width;
+}
+double getHeight(BuildContext context){
+  return MediaQuery.sizeOf(context).height;
+}
+
 showToast({
   required BuildContext context,
   required dynamic message,

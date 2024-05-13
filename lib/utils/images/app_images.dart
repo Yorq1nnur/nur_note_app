@@ -1,6 +1,6 @@
 class AppImages {
   //.png
-  // static const String boy = "assets/images/boy.png";
+  static const String firstOnboard = "assets/images/first_onboard.png";
 
   //.svg
   // static const String profileTextField = "assets/icons/profile.svg";

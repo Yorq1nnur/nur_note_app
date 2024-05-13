@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "431450896424",
+    "project_id": "nur-note-app-2e515",
+    "storage_bucket": "nur-note-app-2e515.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431450896424:android:0abc45bc1dc51671895d1d",
+        "android_client_info": {
+          "package_name": "uz.nur_note_app.nur_note_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcJLvprJMhspnzQNhqOilRinuMMq7VJSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

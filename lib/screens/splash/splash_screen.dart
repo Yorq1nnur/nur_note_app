@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nur_note_app/screens/home/home_screen.dart';
+import 'package:nur_note_app/utils/images/app_images.dart';
+import 'package:nur_note_app/utils/utility_functions/utility_functions.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
         const Duration(
           seconds: 3,
         ), () {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const HomeScreen(),
@@ -57,14 +59,18 @@ class _SplashScreenState extends State<SplashScreen>
             return Transform.scale(
               scale: _animation.value,
               child: Container(
-                width: 200.0,
-                height: 200.0,
+                width: getWidth(context)/1.5,
+                height: getWidth(context)/1.5,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.blue,
                 ),
                 child: Center(
-                  child: Image.asset('assets/images/first_onboard.png'),
+                  child: Image.asset(
+                    AppImages.firstOnboard,
+                    height: getWidth(context)/1.5,
+                    width: getWidth(context)/1.5,
+                  ),
                 ),
               ),
             );
