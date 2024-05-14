@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nur_note_app/bloc/notes/notes_bloc.dart';
 import 'package:nur_note_app/bloc/notes/notes_state.dart';
 import 'package:nur_note_app/screens/app_routes.dart';
+import 'package:nur_note_app/screens/notes/widgets/search.dart';
+import 'package:nur_note_app/screens/notes/widgets/notes_container.dart';
 import 'package:nur_note_app/utils/colors/app_colors.dart';
 import 'package:nur_note_app/utils/sizedbox/get_sizedbox.dart';
 import 'package:nur_note_app/utils/styles/app_text_style.dart';
@@ -72,7 +74,16 @@ class NotesScreen extends StatelessWidget {
                       ),
                     ),
                     ZoomTapAnimation(
-                      onTap: () {},
+                      onTap: () {
+                        showSearch(
+                          context: context,
+                          delegate: ItemSearch(
+                              items: context
+                                  .read<NotesBloc>()
+                                  .state
+                                  .notes), // Pass your list of items here
+                        );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -109,70 +120,8 @@ class NotesScreen extends StatelessWidget {
                           return Wrap(
                             children: List.generate(
                               state.notes.length,
-                              (index) => Container(
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 7.w,
-                                  vertical: 5.h,
-                                ),
-                                width: getWidth(context) / (2.4),
-                                padding: EdgeInsets.only(
-                                  top: 16.h,
-                                  bottom: 16.h,
-                                  left: 16.w,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(
-                                    20.r,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppColors.c6B4EFF.withOpacity(
-                                        .07,
-                                      ),
-                                      blurRadius: 35.r,
-                                      offset: const Offset(
-                                        0,
-                                        4,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      state.notes[index].title,
-                                      style: AppTextStyle.nunitoBold.copyWith(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.w800,
-                                          color: AppColors.c2A2251),
-                                      textAlign: TextAlign.start,
-                                      maxLines: 300,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      state.notes[index].subtitle,
-                                      style: AppTextStyle.nunitoBold.copyWith(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.c667085),
-                                      textAlign: TextAlign.start,
-                                      maxLines: 300,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      state.notes[index].dateTime,
-                                      style: AppTextStyle.nunitoBold.copyWith(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColors.c101828),
-                                      textAlign: TextAlign.start,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
+                              (index) => NotesContainer(
+                                notesModel: state.notes[index],
                               ),
                             ),
                           );

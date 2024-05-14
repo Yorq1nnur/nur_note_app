@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nur_note_app/data/models/notes_model.dart';
 import 'package:nur_note_app/utils/styles/app_text_style.dart';
 import 'package:toast/toast.dart';
