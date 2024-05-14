@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nur_note_app/data/models/notes_model.dart';
 import 'package:nur_note_app/utils/styles/app_text_style.dart';
 import 'package:toast/toast.dart';
 import '../colors/app_colors.dart';
@@ -15,11 +16,24 @@ void methodPrint(dynamic data) {
   debugPrint("\$\$\$\$\$\$\n$data\n\$\$\$\$\$\$");
 }
 
-double getWidth(BuildContext context){
+double getWidth(BuildContext context) {
   return MediaQuery.sizeOf(context).width;
 }
-double getHeight(BuildContext context){
+
+double getHeight(BuildContext context) {
   return MediaQuery.sizeOf(context).height;
+}
+
+List<NotesModel> getCategoryNotes(List<NotesModel> notes, String categoryName) {
+  List<NotesModel> n = [];
+  for (var element in notes) {
+    if (element.categoryName.toLowerCase() == categoryName.toLowerCase()) {
+      n.add(
+        element,
+      );
+    }
+  }
+  return n;
 }
 
 showToast({

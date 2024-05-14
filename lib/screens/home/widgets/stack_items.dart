@@ -46,7 +46,7 @@ class StackItems extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(
                             left: 25.w,
-                            top: 50.h,
+                            top: 70.h,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,16 +85,6 @@ class StackItems extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Text(
-                                'Size: ${state.countOfFilesInPersonal * 0.05} MBs',
-                                style: AppTextStyle.nunitoBlack.copyWith(
-                                  fontSize: 8.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.c000000.withOpacity(
-                                    .4,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -119,7 +109,7 @@ class StackItems extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(
                             left: 25.w,
-                            top: 50.h,
+                            top: 70.h,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -158,16 +148,6 @@ class StackItems extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Text(
-                                'Size: ${state.countOfFilesInAcademic * 0.05} MGs',
-                                style: AppTextStyle.nunitoBlack.copyWith(
-                                  fontSize: 8.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.c000000.withOpacity(
-                                    .4,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -197,7 +177,7 @@ class StackItems extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(
                             left: 25.w,
-                            top: 50.h,
+                            top: 70.h,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -236,16 +216,6 @@ class StackItems extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Text(
-                                'Size: ${state.countOfFilesInWork * 0.05} MBs',
-                                style: AppTextStyle.nunitoBlack.copyWith(
-                                  fontSize: 8.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.c000000.withOpacity(
-                                    .4,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -270,7 +240,7 @@ class StackItems extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(
                             left: 25.w,
-                            top: 50.h,
+                            top: 70.h,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -306,16 +276,6 @@ class StackItems extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.c000000.withOpacity(
                                     .6,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Size: ${state.countOfFilesInOthers * 0.05} MBs',
-                                style: AppTextStyle.nunitoBlack.copyWith(
-                                  fontSize: 8.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.c000000.withOpacity(
-                                    .4,
                                   ),
                                 ),
                               ),

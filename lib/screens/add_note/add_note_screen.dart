@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +7,7 @@ import 'package:nur_note_app/bloc/notes/notes_bloc.dart';
 import 'package:nur_note_app/bloc/notes/notes_event.dart';
 import 'package:nur_note_app/bloc/notes/notes_state.dart';
 import 'package:nur_note_app/data/models/notes_model.dart';
+import 'package:nur_note_app/screens/app_routes.dart';
 import 'package:nur_note_app/utils/colors/app_colors.dart';
 import 'package:nur_note_app/utils/constants/app_constants.dart';
 import 'package:nur_note_app/utils/images/app_images.dart';
@@ -66,7 +66,11 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                     context: context,
                     message: 'NOTE ADDED SUCCESSFULLY',
                   );
-                  Navigator.pop(context);
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RouteNames.homeScreen,
+                    (route) => false,
+                  );
                 }
                 if (state.formStatus == FormStatus.error) {
                   showToast(
@@ -74,7 +78,6 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                     message: state.errorText,
                     color: Colors.red,
                   );
-                  Navigator.pop(context);
                 }
               },
               builder: (context, state) {
@@ -223,6 +226,10 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                       categoryName: currentCategory.toLowerCase(),
                       subtitle: subTitle.text,
                       uuid: '',
+                      dateTime: DateTime.now().toString().substring(
+                            0,
+                            10,
+                          ),
                     );
                     context.read<NotesBloc>().add(
                           AddNoteEvent(

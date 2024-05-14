@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nur_note_app/bloc/notes/notes_bloc.dart';
 import 'package:nur_note_app/data/models/notes_model.dart';
 import 'package:nur_note_app/utils/constants/app_constants.dart';
 import 'package:nur_note_app/utils/utility_functions/utility_functions.dart';
-
 import '../response/my_response.dart';
 
 class NotesRepo {
@@ -141,7 +139,7 @@ class NotesRepo {
       }
 
       return MyResponse(
-        data: n,
+        data: notes,
       );
     } on FirebaseException catch (e) {
       return MyResponse(

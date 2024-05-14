@@ -27,10 +27,20 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     );
 
     if (myResponse.errorText.isEmpty) {
+
+      List<NotesModel> n = myResponse.data;
+      List<NotesModel> notes = myResponse.data;
+
+      for (var element in n) {
+        if(element.categoryName.toLowerCase() == event.categoryName.toLowerCase()){
+          notes.add(element,);
+        }
+      }
+
       emit(
         state.copyWith(
           formStatus: FormStatus.success,
-          notes: myResponse.data,
+          notes: notes,
         ),
       );
     } else {
@@ -161,27 +171,5 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         'DELETE NOTE BLOC DA ERROR GA TUSHDI: ${myResponse.errorText}',
       );
     }
-  }
-
-  _listenNotes(ListenNoteEvent event, Emitter emit) async {
-    await emit.onEach(
-      notesRepo.listenNotes(event.categoryName),
-      onData: (List<NotesModel> notes) {
-        List<NotesModel> n = [];
-        for (var element in notes) {
-          if (element.categoryName.toLowerCase() ==
-              event.categoryName.toLowerCase()) {
-            n.add(element);
-          }
-        }
-        emit(
-          state.copyWith(
-            formStatus: FormStatus.success,
-            notes: n,
-          ),
-        );
-        methodPrint(notes.length);
-      },
-    );
   }
 }

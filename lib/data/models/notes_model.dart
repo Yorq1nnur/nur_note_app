@@ -3,12 +3,14 @@ class NotesModel {
   final String title;
   final String subtitle;
   final String uuid;
+  final String dateTime;
 
   NotesModel({
     required this.title,
     required this.categoryName,
     required this.subtitle,
     required this.uuid,
+    required this.dateTime,
   });
 
   factory NotesModel.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class NotesModel {
       categoryName: json['categoryName'] as String? ?? '',
       subtitle: json['subtitle'] as String? ?? '',
       uuid: json['uuid'] as String? ?? '',
+      dateTime: json['date_time'] as String? ?? '',
     );
   }
 
@@ -26,6 +29,7 @@ class NotesModel {
       'category_name': categoryName,
       'subtitle': subtitle,
       'uuid': uuid,
+      'date_time': dateTime,
     };
   }
   Map<String, dynamic> toJsonForUpdate() {
@@ -41,6 +45,7 @@ class NotesModel {
       categoryName: '',
       subtitle: '',
       uuid: '',
+      dateTime: '',
     );
   }
 
@@ -49,12 +54,14 @@ class NotesModel {
     String? categoryName,
     String? subtitle,
     String? uuid,
+    String? dateTime,
   }) {
     return NotesModel(
       title: title ?? this.title,
       categoryName: categoryName ?? this.categoryName,
       subtitle: subtitle ?? this.subtitle,
       uuid: uuid ?? this.uuid,
+      dateTime: dateTime ?? this.dateTime,
     );
   }
 }
