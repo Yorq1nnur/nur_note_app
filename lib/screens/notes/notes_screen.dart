@@ -78,7 +78,7 @@ class NotesScreen extends StatelessWidget {
                         showSearch(
                           context: context,
                           delegate: ItemSearch(
-                              items: context
+                              notes: context
                                   .read<NotesBloc>()
                                   .state
                                   .notes), // Pass your list of items here

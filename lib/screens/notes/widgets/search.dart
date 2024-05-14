@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nur_note_app/data/models/notes_model.dart';
 import 'package:nur_note_app/screens/detail/detail_screen.dart';
 import 'package:nur_note_app/screens/notes/widgets/notes_container.dart';
-import '../../../../utils/colors/app_colors.dart';
 
 class ItemSearch extends SearchDelegate<String> {
-  final List<NotesModel> items; // List of items to search from
+  final List<NotesModel> notes; // List of items to search from
 
-  ItemSearch({required this.items});
+  ItemSearch({required this.notes});
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -34,23 +32,23 @@ class ItemSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final List<NotesModel> results = items
+    final List<NotesModel> searchOfResults = notes
         .where((item) => item.title.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return Wrap(
       children: List.generate(
-        results.length,
+        searchOfResults.length,
         (index) => GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailScreen(notesModel: results[index]),
+                builder: (context) => DetailScreen(notesModel: searchOfResults[index]),
               ),
             );
           },
-          child: NotesContainer(notesModel: results[index]),
+          child: NotesContainer(notesModel: searchOfResults[index]),
         ),
       ),
     );
@@ -60,7 +58,7 @@ class ItemSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     final List<NotesModel> suggestionList = query.isEmpty
         ? []
-        : items
+        : notes
             .where((item) =>
                 item.title.toLowerCase().contains(query.toLowerCase()))
             .toList();
