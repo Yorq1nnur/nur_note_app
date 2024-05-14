@@ -14,11 +14,34 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     on<AddNoteEvent>(_addNote);
     on<UpdateNoteEvent>(_updateNote);
     on<DeleteNoteEvent>(_deleteNote);
-    on<ListenNoteEvent>(_listenNotes);
+    // on<ListenNoteEvent>(_listenNotes);
+    on<ListenNoteEvent>(_getNotes);
     on<CalculateFileCountEvent>(_calculateFileCount);
   }
 
   final NotesRepo notesRepo;
+
+  _getNotes(ListenNoteEvent event, emit) async {
+    MyResponse myResponse = await notesRepo.getNotes(
+      event.categoryName,
+    );
+
+    if (myResponse.errorText.isEmpty) {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.success,
+          notes: myResponse.data,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.error,
+          errorText: myResponse.errorText,
+        ),
+      );
+    }
+  }
 
   _addNote(AddNoteEvent event, emit) async {
     MyResponse myResponse = await notesRepo.addNote(
@@ -142,14 +165,22 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
 
   _listenNotes(ListenNoteEvent event, Emitter emit) async {
     await emit.onEach(
-      notesRepo.getCardsFromDb(event.categoryName),
+      notesRepo.listenNotes(event.categoryName),
       onData: (List<NotesModel> notes) {
+        List<NotesModel> n = [];
+        for (var element in notes) {
+          if (element.categoryName.toLowerCase() ==
+              event.categoryName.toLowerCase()) {
+            n.add(element);
+          }
+        }
         emit(
           state.copyWith(
             formStatus: FormStatus.success,
-            notes: notes,
+            notes: n,
           ),
         );
+        methodPrint(notes.length);
       },
     );
   }

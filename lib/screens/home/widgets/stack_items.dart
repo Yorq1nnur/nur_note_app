@@ -9,6 +9,7 @@ import 'package:nur_note_app/utils/colors/app_colors.dart';
 import 'package:nur_note_app/utils/images/app_images.dart';
 import 'package:nur_note_app/utils/sizedbox/get_sizedbox.dart';
 import 'package:nur_note_app/utils/styles/app_text_style.dart';
+import 'package:nur_note_app/utils/utility_functions/utility_functions.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class StackItems extends StatelessWidget {
@@ -26,10 +27,10 @@ class StackItems extends StatelessWidget {
                 ZoomTapAnimation(
                   onTap: () {
                     context.read<NotesBloc>().add(
-                      const ListenNoteEvent(
-                        'personal',
-                      ),
-                    );
+                          const ListenNoteEvent(
+                            'personal',
+                          ),
+                        );
                     navigatorMethod(context, "Personal");
                   },
                   child: Stack(
@@ -340,5 +341,8 @@ void navigatorMethod(BuildContext context, String categoryName) {
           categoryName,
         ),
       );
+  methodPrint(
+    'NAVIGATOR ITEM METHOD GA TUSHDI...',
+  );
   Navigator.pushNamed(context, RouteNames.notesScreen, arguments: categoryName);
 }

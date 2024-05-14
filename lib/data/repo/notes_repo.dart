@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nur_note_app/bloc/notes/notes_bloc.dart';
 import 'package:nur_note_app/data/models/notes_model.dart';
 import 'package:nur_note_app/utils/constants/app_constants.dart';
 import 'package:nur_note_app/utils/utility_functions/utility_functions.dart';
@@ -108,7 +109,7 @@ class NotesRepo {
     }
   }
 
-  Stream<List<NotesModel>> getCardsFromDb(String categoryName) =>
+  Stream<List<NotesModel>> listenNotes(String categoryName) =>
       FirebaseFirestore.instance.collection(AppConstants.notes).snapshots().map(
             (event) => event.docs
                 .map(
@@ -116,7 +117,38 @@ class NotesRepo {
                     e.data(),
                   ),
                 )
-                .where((element) => categoryName.toLowerCase() == element.categoryName)
                 .toList(),
           );
+
+  Future<MyResponse> getNotes(String categoryName)async{
+
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection(AppConstants.notes)
+          .where('category_name', isEqualTo: categoryName.toLowerCase())
+          .get();
+
+      List<NotesModel> notes = querySnapshot.docs
+          .map((e) => NotesModel.fromJson(e.data() as Map<String, dynamic>))
+          .toList();
+
+      List<NotesModel> n = [];
+
+      for (var element in notes) {
+        if(element.categoryName.toLowerCase() == categoryName.toLowerCase()){
+          n.add(element);
+        }
+      }
+
+      return MyResponse(
+        data: n,
+      );
+    } on FirebaseException catch (e) {
+      return MyResponse(
+        errorText: e.toString(),
+      );
+    }
+
+  }
+
 }

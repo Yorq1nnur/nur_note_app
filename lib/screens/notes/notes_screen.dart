@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nur_note_app/bloc/notes/notes_bloc.dart';
+import 'package:nur_note_app/bloc/notes/notes_event.dart';
 import 'package:nur_note_app/bloc/notes/notes_state.dart';
 import 'package:nur_note_app/screens/app_routes.dart';
 import 'package:nur_note_app/utils/colors/app_colors.dart';
@@ -22,6 +23,7 @@ class NotesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return AnnotatedRegion(
       value: systemUiOverlayStyle,
       child: Scaffold(
@@ -62,7 +64,7 @@ class NotesScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Personal',
+                        categoryName,
                         style: AppTextStyle.nunitoBold.copyWith(
                           fontSize: 20.sp,
                         ),
@@ -155,7 +157,7 @@ class NotesScreen extends StatelessWidget {
                       ...List.generate(
                         state.notes.length,
                         (index) => Text(
-                          state.notes[index].title,
+                          state.notes[index].categoryName,
                           style: AppTextStyle.nunitoBold,
                         ),
                       ),
